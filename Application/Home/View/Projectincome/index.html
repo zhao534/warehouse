@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>进销存 - 工程收入管理 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/styles/general.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/styles/main.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/styles/jquery-ui.css" />
+
+<style type="text/css">
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px;}
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+.ui_tpicker_hour_label,.ui_tpicker_minute_label,.ui_tpicker_second_label,.ui_tpicker_millisec_label,.ui_tpicker_time_label{padding-left:20px}
+</style>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-ui.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-ui-slide.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-ui-timepicker-addon.js"></script>
+
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="__CONTROLLER__/add">添加工程收入</a></span>
+<span class="action-span1"><a href="__APP__">进销存 管理中心</a> </span><span id="search_id" class="action-span1"> - 工程收入 </span>
+<div style="clear:both"></div>
+</h1>
+
+<div class="form-div">
+  <form action="__ACTION__" name="searchForm" method="get">
+    <img src="__PUBLIC__/images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH">
+      <label>工程名称</label><input type="text" name="name" size="15" value="<?php echo I('get.name'); ?>">
+      <label>入账起始时间</label><input type="text" name="start" id="start" size="18" value="<?php echo I('get.start'); ?>"></input>
+      <label>结束时间</label><input type="text" name="end" id="end" size="18" value="<?php echo I('get.end'); ?>"></input>
+      <label>入账金额</label>
+      <input type="text" name="min" size="8" value="<?php echo I('get.min'); ?>">
+  	  <label>区间</label><input type="text" name="max" size="8" value="<?php echo I('get.max'); ?>">
+      <input type="submit" value=" 搜索 " class="button">
+  </form>
+ 
+</div>
+
+<form method="post" action="__CONTROLLER__/bdel" name="listForm">
+<!-- start brand list -->
+<div class="list-div" id="listDiv">
+  <table cellpadding="3" cellspacing="1">
+    <tbody>
+		<tr>
+			<th><input type="checkbox" id="selall"/>全选</th>
+			
+			            <th>索引</th>
+                        <th>工程名称</th>
+                        <th>摘要</th>
+                        <th>入账人</th>
+                        <th>入账金额</th>
+                        <th>入账时间</th>
+                       
+            			
+			<th>操作</th>
+		</tr>
+		<?php foreach($data as $v):?>        <tr class="mouseon">
+        	<td align="center"><input type="checkbox" name="delid[]" value="{$v.id}"/>{$v.id}</td>
+         	<td align="center"><?php echo $v['id']; ?></td>
+          	<td align="center"><?php echo $v['name_project']; ?></td>
+          	<td align="center"><?php echo $v['summary']; ?></td>
+          	<td align="center"><?php echo $v['username']; ?></td>
+          	<td align="center"><?php echo $v['get_money']; ?></td>
+          	<td align="center"><?php echo $v['get_time']; ?></td>
+                                	
+                                <td align="center">
+	                <a href="__CONTROLLER__/edit/id/{$v.id}" title="编辑">编辑</a> |
+	                <a onclick="return confirm('确定要删除吗?');" href="__CONTROLLER__/del/id/{$v.id}" title="删除">移除</a> 
+                </td>
+            </tr>
+            <?php endforeach; ?>	
+	<tr>
+		<td nowrap="true" colspan="9">
+         	<input name="delbutton" type="submit" class="button" value=" 删除所选 " onclick="javascript:return confirm('你确认要删除所选记录吗？');"/>
+      </td>
+    </tr>
+		
+    <tr>
+		<td nowrap="true" colspan="9">
+            <div id="turn-page">
+          {$str}
+      </div>
+      </td>
+    </tr>
+  </tbody></table>
+
+<!-- end brand list -->
+</div>
+</form>
+
+<div id="footer">
+	版权所有 &copy; 2016 弘大电力 - </div>
+</div>
+</body>
+</html>
+
+<script>
+$(document).ready(function(){
+	
+	/***************datetime插件*********************/
+	var startDateTextBox = $('#start');
+	var endDateTextBox = $('#end');
+
+	startDateTextBox.datetimepicker({ 
+		//timeFormat: 'HH:mm z',
+		onClose: function(dateText, inst) {
+			if (endDateTextBox.val() != '') {
+				var testStartDate = startDateTextBox.datetimepicker('getDate');
+				var testEndDate = endDateTextBox.datetimepicker('getDate');
+				if (testStartDate > testEndDate)
+					endDateTextBox.datetimepicker('setDate', testStartDate);
+			}
+			else {
+				endDateTextBox.val(dateText);
+			}
+		},
+		onSelect: function (selectedDateTime){
+			endDateTextBox.datetimepicker('option', 'minDate', startDateTextBox.datetimepicker('getDate') );
+		}
+	});
+	endDateTextBox.datetimepicker({ 
+		//timeFormat: 'HH:mm z',
+		onClose: function(dateText, inst) {
+			if (startDateTextBox.val() != '') {
+				var testStartDate = startDateTextBox.datetimepicker('getDate');
+				var testEndDate = endDateTextBox.datetimepicker('getDate');
+				if (testStartDate > testEndDate)
+					startDateTextBox.datetimepicker('setDate', testEndDate);
+			}
+			else {
+				startDateTextBox.val(dateText);
+			}
+		},
+		onSelect: function (selectedDateTime){
+			startDateTextBox.datetimepicker('option', 'maxDate', endDateTextBox.datetimepicker('getDate') );
+		}
+	});
+	/***************datetime插件结束*********************/
+	
+	
+	
+	  //鼠标滑上显示颜色
+	  $(".mouseon").mouseover(function(){
+		  $(this).addClass("current_tr");
+	  });
+	  
+	  $(".mouseon").mouseout(function(){
+		  $(this).removeClass("current_tr");
+	  });
+	
+	  //初始加载页面删除全选的按钮不可用
+	  $("input[name='delbutton']").attr("disabled",true);
+	  
+	  //为所有delid[]绑定点击事件
+	  $("input[name='delid[]']").each(function(k,v){
+		  $(this).click(function(){
+			  len = $("input[name='delid[]']").length;
+			  
+			  if($(this).is(":checked")==true){
+				  selectAll = 0;
+				  //判断其他兄弟delid是否已经选中
+				  $.each($("input[name='delid[]']"),function(kk,vv){
+					  if(vv.checked==true) selectAll = selectAll+1;
+				  });
+				  
+				  if(selectAll == len)
+					  $("#selall").attr("checked","checked");
+				  
+				  $("input[name='delbutton']").attr("disabled",false);
+			  }
+			  else{
+				  cancelAll = 0;
+				  //判断其他兄弟delid是否都未选中
+				  $.each($("input[name='delid[]']"),function(kk,vv){
+					  if(vv.checked==false) cancelAll = cancelAll+1;
+				  });
+				  
+				  if(cancelAll == len){
+					  $("#selall").removeAttr("checked");
+					  $("input[name='delbutton']").attr("disabled",true);
+				  }
+			  }
+		  });
+	  });
+	});
+	
+$("#selall").click(function(){
+	var delbutton = $("input[name='delbutton']");
+	var delid = $("input[name='delid[]']");
+	
+	if($(this).is(':checked')==false){
+		delid.removeAttr("checked");
+		delbutton.attr("disabled",true);
+	}
+	else{
+		//如果没有数据,即使点击按钮按钮也不好使
+		if(delid.length>0){
+			//将当前页checkbox全选
+			delid.attr("checked","checked");
+			//删除按钮可用
+			delbutton.attr("disabled",false);
+		}
+	}
+});
+</script>

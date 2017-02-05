@@ -1,0 +1,70 @@
+<!-- $Id: start.htm 17216 2011-01-19 06:03:12Z liubo $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>SHOP 管理中心</title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/styles/general.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/styles/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<h1>
+<span class="action-span1"><a href="__SELF__">进销存财务 管理中心</a> </span><span id="search_id" class="action-span1"></span>
+<div style="clear:both"></div>
+</h1>
+<!-- directory install start -->
+<ul id="cloud_list" style="padding:0; margin: 0; list-style-type:none; color: #CC0000;">
+
+</ul>
+
+<ul style="padding:0; margin: 0; list-style-type:none; color: #CC0000;">
+</ul>
+<div class="list-div">
+
+<div class="list-div" id="listDiv">
+  <table cellpadding="3" cellspacing="1">
+    <tbody>
+		<tr>
+		   	<th>上年结余</th>
+           	<th>工程收入</th>
+           	<th>其他收入</th>
+          	<th>工程支出</th>
+           	<th>其他支出</th>
+           	<th>今年余额</th>
+		</tr>
+	    <tr class="mouseon">
+       		<td align="center" nowrap="true" rowspan="3">{$last_blance}</td>
+			<td align="center">{$project_income}</td>
+            <td align="center">{$other_income}</td>
+            <td align="center">{$project_expense}</td>
+            <td align="center">{$other_expense}</td>
+            <td align="center" nowrap="true" rowspan="3">{$blance}</td>
+        </tr>
+        
+        <tr class="mouseon">
+			<th align="center" nowrap="true" colspan="2">当年总收入</th>
+            <th align="center" nowrap="true" colspan="2">当前总支出</th>
+        </tr>
+        
+        <tr class="mouseon">
+			<td align="center" nowrap="true" colspan="2">{$total_income}</td>
+            <td align="center" nowrap="true" colspan="2">{$total_expense}</td>
+        </tr>
+        
+  </tbody></table>
+
+</div>
+
+
+</div>
+
+<div id="footer">
+
+版权所有 &copy; 2016- 弘大电力 - </div>
+
+</div>
+
+</body>
+</html>

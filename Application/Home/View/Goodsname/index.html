@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>进销存 - 商品名称备选管理 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/styles/general.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/styles/main.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.4.4.js"></script>
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="__CONTROLLER__/add">添加备选名称</a></span>
+<span class="action-span1"><a href="__APP__">进销存 管理中心</a> </span><span id="search_id" class="action-span1"> - 商品名称备选 </span>
+<div style="clear:both"></div>
+</h1>
+
+<div class="form-div">
+  <form action="__ACTION__" name="searchForm" method="get">
+    <img src="__PUBLIC__/images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH">
+     <input type="text" name="name" size="15" value="<?php echo I('get.name'); ?>">
+    <input type="submit" value=" 搜索 " class="button">
+  </form>
+</div>
+
+<form method="post" action="__CONTROLLER__/bdel" name="listForm">
+<!-- start brand list -->
+<div class="list-div" id="listDiv">
+  <table cellpadding="3" cellspacing="1">
+    <tbody>
+		<tr>
+			<th><label><input type="checkbox" id="selall"/>全选</label></th>
+			
+			            <th>索引</th>
+                        <th>名称</th>
+            			
+			<th>操作</th>
+		</tr>
+		<?php foreach($data as $v):?>        <tr class="mouseon">
+        	<td align="center"><label><input type="checkbox" name="delid[]" value="{$v.id}"/>{$v.id}</label></td>
+			                	<td align="center"><?php echo $v['id']; ?></td>
+                                	<td align="center"><?php echo $v['name']; ?></td>
+                                <td align="center">
+	                <a href="__CONTROLLER__/edit/id/{$v.id}" title="编辑">编辑</a> |
+	                <a onclick="return confirm('确定要删除吗?');" href="__CONTROLLER__/del/id/{$v.id}" title="删除">移除</a> 
+                </td>
+            </tr>
+            <?php endforeach; ?>	
+	<tr>
+		<td nowrap="true" colspan="4">
+         	<input name="delbutton" type="submit" class="button" value=" 删除所选 " onclick="javascript:return confirm('你确认要删除所选记录吗？');"/>
+      </td>
+    </tr>
+		
+    <tr>
+		<td nowrap="true" colspan="4">
+            <div id="turn-page">
+          {$str}
+      </div>
+      </td>
+    </tr>
+  </tbody></table>
+
+<!-- end brand list -->
+</div>
+</form>
+
+<div id="footer">
+	版权所有 &copy; 2016 弘大电力 - </div>
+</div>
+</body>
+</html>
+
+<script>
+$(document).ready(function(){
+	  //鼠标滑上显示颜色
+	  $(".mouseon").mouseover(function(){
+		  $(this).addClass("current_tr");
+	  });
+	  
+	  $(".mouseon").mouseout(function(){
+		  $(this).removeClass("current_tr");
+	  });
+	
+	  //初始加载页面删除全选的按钮不可用
+	  $("input[name='delbutton']").attr("disabled",true);
+	  
+	  //为所有delid[]绑定点击事件
+	  $("input[name='delid[]']").each(function(k,v){
+		  $(this).click(function(){
+			  len = $("input[name='delid[]']").length;
+			  
+			  if($(this).is(":checked")==true){
+				  selectAll = 0;
+				  //判断其他兄弟delid是否已经选中
+				  $.each($("input[name='delid[]']"),function(kk,vv){
+					  if(vv.checked==true) selectAll = selectAll+1;
+				  });
+				  
+				  if(selectAll == len)
+					  $("#selall").attr("checked","checked");
+				  
+				  $("input[name='delbutton']").attr("disabled",false);
+			  }
+			  else{
+				  cancelAll = 0;
+				  //判断其他兄弟delid是否都未选中
+				  $.each($("input[name='delid[]']"),function(kk,vv){
+					  if(vv.checked==false) cancelAll = cancelAll+1;
+				  });
+				  
+				  if(cancelAll == len){
+					  $("#selall").removeAttr("checked");
+					  $("input[name='delbutton']").attr("disabled",true);
+				  }
+			  }
+		  });
+	  });
+	});
+	
+$("#selall").click(function(){
+	var delbutton = $("input[name='delbutton']");
+	var delid = $("input[name='delid[]']");
+	
+	if($(this).is(':checked')==false){
+		delid.removeAttr("checked");
+		delbutton.attr("disabled",true);
+	}
+	else{
+		//如果没有数据,即使点击按钮按钮也不好使
+		if(delid.length>0){
+			//将当前页checkbox全选
+			delid.attr("checked","checked");
+			//删除按钮可用
+			delbutton.attr("disabled",false);
+		}
+	}
+});
+</script>

@@ -1,0 +1,521 @@
+<!-- $Id: brand_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>进销存 管理中心 - 添加出库单 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/styles/general.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/styles/main.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/styles/jquery-ui-1.12.1.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+/*自动提示加载图片*/
+.ui-autocomplete-loading {
+    background: white url("__PUBLIC__/images/loader.gif") right center no-repeat;
+}
+
+/*折叠结果*/
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+/* IE 6 doesn't support max-height
+ * we use height instead, but this forces the menu to always be this tall
+ */
+* html .ui-autocomplete {
+  height: 200px;
+}
+</style>
+ 
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-ui-1.12.1.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/submitWait.js"></script>
+<script>
+function MyAutocomplete(obj,address,cache){
+	obj.autocomplete({
+	      minLength: 1,
+	      source: function( request, response ) {
+	        var term = request.term;
+	        if ( term in cache ){
+	          response(cache[ term ] );
+	          return;
+	        }
+	 
+	        $.getJSON(address+term, function( data, status, xhr ) {
+	        	var result = [];
+	        	if(data){
+	        		$.each(data,function(n,i){
+	        	  		result[n] = data[n].name;
+		      		});
+	          		cache[term] = result;
+	        	}
+	          	response(result);
+	        });//getJSON
+	      }//source
+	    });
+}
+
+
+
+$(function() {
+	
+	  /**************鼠标滑上显示颜色*******************/
+	  $(".mouseon").mouseover(function(){
+		  $(this).addClass("current_tr");
+	  });
+	  
+	  $(".mouseon").mouseout(function(){
+		  $(this).removeClass("current_tr");
+	  });
+	  
+	/***************datetime插件*********************/
+	$( "#datetime" ).datepicker({
+	  yearRange: "1970:2100",
+	  closeText: "完成",
+      changeMonth: true,
+      changeYear: true,
+      showButtonPanel: true,
+      dateFormat: "yy-mm-dd",
+      currentText: '今天',
+	  monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+	  monthNamesShort: ['一','二','三','四','五','六','七','八','九','十','十一','十二'],
+	  monthNamesShort: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+	  dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+	  dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],
+	  dayNamesMin: ['日','一','二','三','四','五','六']
+    });
+	
+	/***************datetime插件结束*********************/
+	
+	
+	/**************商品名称和型号名称的自动提示功能*******************/ 
+	var cache_goods   = {};
+	var cache_type    = {};
+	var cache_project = {};
+	
+	/*商品名称*/
+	MyAutocomplete($(".goods" ),"__MODULE__/Goodsname/getData/term/",cache_goods);
+	
+    /*型号*/
+    MyAutocomplete($(".type" ),"__MODULE__/Typename/getData/term/",cache_type);
+	
+    /*工程名称*/
+    MyAutocomplete($("#project" ),"__MODULE__/project/getData/term/",cache_project);
+	
+    
+	/**************添加一行单机事件*******************/
+	$(".plus").on("click",function(){
+		//先获取所在的tr
+		var tr = $(this).parent().parent();
+
+		if($(this).val()=="+"){
+			//点击+号时，给下一个select商品类型绑定上二级联动事件
+			var newtr = tr.clone();
+			
+			//找到按钮删除，重新克隆有附加事件的按钮
+			button = newtr.find(":button");
+			//<td><button/></td>
+			td = button.parent();
+			button.remove();
+			td.append(tr.find('.plus').clone(true).val("-"));
+			//将newtr插入到最后一行
+			//tr.after(newtr);
+			laststr = tr.parent().find("tr:last");
+			laststr.after(newtr);
+			
+			obj_goods = newtr.find(".goods");
+			obj_type  = obj_goods.parent().next().find('.type');
+			obj_quantity = obj_type.parent().next().find('.quantity');
+			obj_unit = obj_quantity.parent().next().find('.unit');
+			
+			//清空复制的数据
+			obj_goods.val('');
+			obj_type.val('');
+			obj_quantity.val('');
+			obj_unit.val('');
+			
+			//重新绑定事件
+			/*商品名称*/
+			MyAutocomplete(obj_goods,"__MODULE__/Goodsname/getData/term/",cache_goods);
+		    
+		    /*型号*/
+		    MyAutocomplete(obj_type,"__MODULE__/Typename/getData/term/",cache_type); 
+		}
+		else{
+			tr.remove();
+		}
+		
+		//将序号重新排列
+		$(".order").each(function(i){
+			$(this).text(i+1);
+		});
+ 
+	});
+	
+	/**************提交验证事件*******************/
+	//错误信息不可见
+	$("#error").parent().hide();
+	//提交按钮,所有验证通过方可提交            
+	$('#submit').click(function(){
+		var flag_time  = true;
+		var flag_user  = true;
+		var flag_type  = true;
+		var flag_goods = true;
+		//var flag_price = true;
+		var flag_quantity= true;
+		var flag_stock = true;
+		var flag_project = true;
+		var flag_goods_type = true;
+		
+		//出库数量不能大于库存标记
+		var flag_number_limit = true;
+		
+		//商品名称和型号名称相同的行
+		var list 		   = new Array();
+		//类型
+		var order_type     = new Array();
+		//商品名称
+		var order_goods    = new Array();
+		//出库数量
+		var order_quantity = new Array();
+		//价格
+		//var order_price  = new Array();
+		//出库数量不能大于库存
+		var order_leave    = new Array();
+		
+		/*************修改一下跑一次循环验证完事*************/
+		
+		//检查出库时间
+		var time = $('#datetime').val();
+		if(time!=null){
+			//验证时间正则格式
+			//年-月-日 时：分
+			//var reg = new RegExp("^[1-2][0-9][0-9][0-9]-([1][0-2]|0?[1-9])-([12][0-9]|3[01]|0?[1-9]) ([01][0-9]|[2][0-3]):[0-5][0-9]$");
+			var reg = new RegExp("^[1-2][0-9][0-9][0-9]-([1][0-2]|0?[1-9])-([12][0-9]|3[01]|0?[1-9])$");
+			
+			if(!reg.test(time))
+				flag_time = false;
+		}
+		else flag_time = false;
+		
+		//检查出库人
+		var user = $('#user').val();
+		if(user==0)
+			flag_user = false;
+		
+		//检查工程名称
+		var project = $('#project').val();
+		if(project=='')
+			flag_project = false;
+		
+		
+		//检查库房
+		var stock =$('#stock').val();
+		if(stock==0)
+			flag_stock = false;
+		
+		//一次循环验证
+		//供验证出库数量不能大于入库数量使用
+		var goods_name = new Array();
+		var type_name = new Array();
+		$.each($('.goods'), function(i, n){
+  			var obj_goods     = $(this);
+  			var obj_type      = obj_goods.parent().next().find("input");
+  			
+  			var obj_quantity  = obj_type.parent().next().find("input");
+  			//var obj_price     = obj_quantity.parent().next().find("input");
+  			
+  			var type  	 = obj_type.val();
+  			var goods 	 = obj_goods.val();
+  			var quantity = obj_quantity.val();
+  			//var price 	 = obj_price.val();
+  			
+  			if(type=='')
+  				order_type.push(i+1);
+  			else
+  				type_name.push(type);
+  			if(goods=='')
+  				order_goods.push(i+1);
+  			else 
+  				goods_name.push(goods);
+  			
+  			if(quantity!=null){
+				//验证数量正则
+				var reg = /^[0-9]*[1-9][0-9]*$/;
+     			if (!reg.test(quantity))
+     				order_quantity.push(i+1);
+			}
+			else
+				order_quantity.push(i+1);
+  		/*
+  			if(price!=null){
+				//验证价格正则
+				var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
+     	
+				if (!reg.test(price))
+     				order_price.push(i+1);
+			}
+			else
+				order_price.push(i+1);
+  		*/
+		});
+		
+		if(order_type.length>0)
+			flag_type =false;
+		if(order_goods.length>0)
+			flag_goods =false;
+		if(order_quantity.length>0)
+			flag_quantity =false;
+		/*
+		if(order_price.length>0)
+			flag_price =false;
+		*/
+		
+		//不能出现商品名称和型号名称相同的行
+		if(flag_goods && flag_type){
+			//减去表头
+			var len = $('#listDiv table tr').length-1;
+			
+			for(i=0;i<len;i++){
+				for(j=i;j<len;j++){
+					var goods_i = $($('.goods').get(i)).val();
+					var goods_j = $($('.goods').get(j)).val();
+					var type_i  = $($('.type').get(i)).val();
+					var type_j  = $($('.type').get(j)).val();
+					
+					if((i!=j) && (goods_i==goods_j) && (type_i==type_j)){
+						list.push("【"+(i+1)+"和"+(j+1)+"】");
+					}
+				}
+			}
+			
+			if(list.length>0)
+				flag_goods_type = false;
+
+		}
+		
+		//出库数量不能大于库存数量
+		if(flag_stock && flag_goods && flag_type && flag_goods_type){
+			$.ajax({
+				type:'POST',
+			    url:'__MODULE__/Stock/getStock',
+			    data:{
+			    	goods_name:goods_name,
+			    	type_name:type_name,
+			    	stock_id:stock
+			    },
+			    dataType:'json',
+			    timeout:3000,
+			    //此处万万不能为true，异步进行！！！
+			    async:false,
+			    success:function(data){
+			    	$.each(data, function(i, n){
+			    		  //alert( "Item #" + i + ": " + n );
+			    		  var leavenumber = parseInt($($('.quantity').get(i)).val());
+			    		  
+			    		  n = parseInt(n);
+			    		  
+			    		  if(leavenumber>n)
+			    			  order_leave.push(i+1);
+			    		  
+			    		  //console.log(order_leave);
+			    	});
+			    	
+			    	if(order_leave.length>0)
+			    		flag_number_limit = false;
+
+			    },
+			    error:function(msg){
+			    	//console.log(msg);
+			        alert('请求发生错误,刷新页面重试！');
+			    }
+	        });
+		}
+		
+		
+		//console.log(order_leave);
+		//此处问题336行结果先输出，ajax获取的数据后呈现
+		
+		if(flag_time && flag_user && flag_project && flag_type && flag_goods && flag_quantity && flag_stock && flag_goods_type && flag_number_limit)             
+			$('form').submit();
+		else{
+			str="";
+			if(!flag_time)
+				str +="<li>出库时间为空或格式不正确；</li>";
+			if(!flag_user)
+				str +="<li>出库人未选择；</li>";
+			if(!flag_stock)
+				str +="<li>所出库房未选择；</li>";
+			if(!flag_project)
+				str +="<li>工程名称为空；</li>";
+			if(!flag_type)
+				str +="<li>序号"+order_type+"的商品规格未填写；</li>";
+			if(!flag_goods)
+				str +="<li>序号"+order_goods+"的商品名称未填写；</li>";
+			//if(!flag_price)
+				//str +="<li>序号"+order_price+"的出库价格未填写或格式不正确；</li>";	
+			if(!flag_quantity)
+				str +="<li>序号"+order_quantity+"的出库数量未填写或格式不正确；</li>";
+			if(!flag_goods_type)
+				str +="<li>序号"+list+"的商品名称和型号名称相同！请确认；</li>";
+			if(!flag_number_limit)
+				str +="<li>序号"+order_leave+"的出库数量大于库存数量！请确认；</li>";
+				
+
+			$("#error").parent().show();
+			
+			$("#error").html("<ol>"+str+"</ol>");
+			return false;
+		}
+		
+	}); 	
+	
+});
+</script>  
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="__CONTROLLER__/index">出库列表</a></span>
+    <span class="action-span1"><a href="__APP__">进销存 管理中心</a></span>
+    <span id="search_id" class="action-span1"> - 添加出库单 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="main-div">
+    <form method="post" action="__SELF__">
+        <table cellspacing="1" cellpadding="3" width="100%">
+        	            <tr>
+        	    <td class="label">错误信息：</td>
+                <td id="error" style="color:red;">
+                </td>
+        	            </tr>
+        	            <tr>
+                <td class="label">出库时间：</td>
+                <td>
+                    <input id="datetime" type="text" name="leavedate" maxlength="60" size="40" value="" />
+                    <span class="require-field">（格式：年-月-日）*</span>
+                </td>
+            </tr>
+            
+          
+           <?php if(session('rolename')=='系统管理员'){?>
+            <tr>
+                <td class="label">入库人：</td>
+                <td>
+                    <select name="user_id" id="user">
+                		<option class="gray" value="0">请选择入库人员：</option>
+                		<?php foreach($data_user as $k=>$v):?>
+                			<option value="<?php echo $v['id'];?>">
+                				<?php echo $v['username'];?>
+                			</option>
+                		<?php endforeach;?>
+                	</select>
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+            
+                <tr>
+                <td class="label">所入仓库：</td>
+                <td>
+                 	<select name="stock_id" class="stock" id="stock">
+                			<option value="0">请选择所入仓库</option>
+                			<?php foreach($data_stockhouse as $k=>$v):?>
+                			<option value="<?php echo $v['id'];?>">
+                				<?php echo $v['name'];?>
+                			</option>
+                			<?php endforeach;?>	
+                	</select>
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+            <?php }else{?>
+            <tr>
+                <td class="label">入库人：</td>
+                <td>
+                    <select name="user_id" id="user" onfocus="this.defaultIndex=this.selectedIndex;" onchange="this.selectedIndex=this.defaultIndex;">
+                		<option class="gray" value="0">请选择入库人</option>
+                		<?php foreach($data_user as $k=>$v):?>
+                			<option <?php if(session('userid')==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>">
+                				<?php echo $v['username'];?>
+                			</option>
+                		<?php endforeach;?>
+                	</select>
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+            
+                <tr>
+                <td class="label">所入仓库：</td>
+                <td>
+                 	<select name="stock_id" class="stock" id="stock" onfocus="this.defaultIndex=this.selectedIndex;" onchange="this.selectedIndex=this.defaultIndex;">
+                			<option value="0">请选择所入仓库</option>
+                			<?php foreach($data_stockhouse as $k=>$v):?>
+                			<option <?php if(strpos(','.$v['user_id_list'].',',','.session('userid').',')!==FALSE) echo "selected='selected'";?> value="<?php echo $v['id'];?>">
+                				<?php echo $v['name'];?>
+                			</option>
+                			<?php endforeach;?>	
+                	</select>
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+            <?php }?>
+		
+          
+            
+          
+            
+            <tr>
+                <td class="label">工程名称：</td>
+                <td>
+                 	<input type="text" id="project" name="project_id" maxlength="30" size="20" value="" />
+                    <span class="require-field">*</span>
+                </td>   
+            </tr>
+   
+                 <tr>
+                <td class="label">出库商品：</td>
+                <td>
+                	<div class="list-div" id="listDiv">
+                    <table cellspacing="1" cellpadding="3" width="100%">
+                    	<tr>
+                    		<td colspan="6" align="center">【提示：单位是“个”，则不必填写单位】</td>
+                    	</tr>
+                   		<tr>
+                   			<th>序号</th>
+                   			<th>商品名称</th>
+                   			<th>型号</th>
+                   			<th>出库数量</th>
+                   			<!-- <th>单位</th> -->
+                   			<th>操作</th>
+                   		</tr>
+         				
+                   		<tr style="text-align:center;" class="mouseon">
+                   		<td class="order">1</td>
+                   		<td><input type="text"   class="goods"    name="goods_name[]" maxlength="30" size="20" value="" /></td>
+                   		<td><input type="text"   class="type"     name="type_name[]" maxlength="30" size="20" value="" /></td>
+                   		<td><input type="text"   class="quantity" name="quantity_leave[]"  maxlength="10" size="10" value="" /></td>
+						<!-- <td><input type="text"   class="unit"     name="unit[]"  maxlength="10" size="10" value="" /></td> -->
+
+                   		<td><input type="button" class="plus"     value="+"/></td>
+                   		</tr>
+                   	</table>
+                   	</div>
+                </td>
+            </tr>
+            
+			            <tr>
+                <td colspan="2" align="center"><br />
+                    <input id="submit" type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="footer">
+共执行 1 个查询，用时 0.018952 秒，Gzip 已禁用，内存占用 2.197 MB<br />
+版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
+</body>
+</html>

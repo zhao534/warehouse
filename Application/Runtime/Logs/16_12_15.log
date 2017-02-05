@@ -1,0 +1,1183 @@
+[ 2016-12-15T20:45:09+08:00 ] ::1 /warehouse/index.php/Home/leavestock/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.009001s ]
+NOTIC: [2048] Declaration of Home\Model\LeavestockModel::_after_insert() should be compatible with Think\Model::_after_insert($data, $options) D:\xampp\htdocs\warehouse\Application\Home\Model\LeavestockModel.class.php 第 223 行.
+SQL: DESCRIBE wh_leavestock [ RunTime:0.043002s ]
+NOTIC: [2] Invalid argument supplied for foreach() D:\xampp\htdocs\warehouse\ThinkPHP\Library\Think\Db.class.php 第 429 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `wh_leavestock` LIMIT 1   [ RunTime:0.001000s ]
+NOTIC: [2] Invalid argument supplied for foreach() D:\xampp\htdocs\warehouse\ThinkPHP\Library\Think\Db.class.php 第 429 行.
+SQL: SELECT a.*,b.id AS id_user,b.username FROM wh_leavestock a INNER JOIN wh_user b ON a.user_id=b.id  ORDER BY a.leavedate desc LIMIT 0,10   [ RunTime:0.001001s ]
+SQL: DESCRIBE wh_type [ RunTime:0.009000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.008000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.009001s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2016-12-15T20:45:15+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006001s ]
+SQL: DESCRIBE wh_type [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.008001s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.008000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-12-15T20:45:49+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+NOTIC: [2048] Declaration of Home\Model\LeavestockModel::_after_insert() should be compatible with Think\Model::_after_insert($data, $options) D:\xampp\htdocs\warehouse\Application\Home\Model\LeavestockModel.class.php 第 223 行.
+SQL: DESCRIBE wh_leavestock [ RunTime:0.006001s ]
+NOTIC: [8] Undefined index: leavedate D:\xampp\htdocs\warehouse\ThinkPHP\Library\Think\Model.class.php 第 1125 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-15T20:45:52+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: DESCRIBE wh_type [ RunTime:0.007000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-12-15T20:45:55+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: DESCRIBE wh_type [ RunTime:0.004000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.006001s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.004001s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2016-12-15T20:46:10+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: DESCRIBE wh_type [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.009001s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-12-15T20:46:32+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: DESCRIBE wh_type [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006001s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-15T20:46:51+08:00 ] ::1 /warehouse/index.php/Home/Goods/getGoodsByTypeId
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005001s ]
+SQL: DESCRIBE wh_goods [ RunTime:0.057003s ]
+SQL: SELECT `id`,`name` FROM `wh_goods` WHERE ( `type_id` = 1 )  [ RunTime:0.000000s ]
+
+[ 2016-12-15T20:46:52+08:00 ] ::1 /warehouse/index.php/Home/Goods/getGoodsByTypeId
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006001s ]
+SQL: DESCRIBE wh_goods [ RunTime:0.006000s ]
+SQL: SELECT `id`,`name` FROM `wh_goods` WHERE ( `type_id` = 1 )  [ RunTime:0.001000s ]
+
+[ 2016-12-15T20:56:05+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: DESCRIBE wh_type [ RunTime:0.006001s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.005001s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.004000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-12-15T20:56:27+08:00 ] ::1 /warehouse/index.php/Home/Goods/getGoodsByTypeId
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.008001s ]
+SQL: DESCRIBE wh_goods [ RunTime:0.008000s ]
+SQL: SELECT `id`,`name` FROM `wh_goods` WHERE ( `type_id` = 1 )  [ RunTime:0.001001s ]
+
+[ 2016-12-15T20:56:29+08:00 ] ::1 /warehouse/index.php/Home/Goods/getGoodsByTypeId
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: DESCRIBE wh_goods [ RunTime:0.005000s ]
+SQL: SELECT `id`,`name` FROM `wh_goods` WHERE ( `type_id` = 1 )  [ RunTime:0.000000s ]
+
+[ 2016-12-15T20:57:04+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: DESCRIBE wh_user [ RunTime:0.007001s ]
+SQL: DESCRIBE wh_type [ RunTime:0.007000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006001s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2016-12-15T20:57:25+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: DESCRIBE wh_type [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.007000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.005001s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-15T20:57:58+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: DESCRIBE wh_type [ RunTime:0.005001s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.007000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.006001s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-15T20:58:24+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: DESCRIBE wh_type [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.005001s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-15T21:04:21+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005001s ]
+SQL: DESCRIBE wh_type [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.006001s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.004000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-12-15T21:04:27+08:00 ] ::1 /warehouse/index.php/Home/Goods/getGoodsByTypeId
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.007000s ]
+SQL: DESCRIBE wh_goods [ RunTime:0.007000s ]
+SQL: SELECT `id`,`name` FROM `wh_goods` WHERE ( `type_id` = 1 )  [ RunTime:0.001001s ]
+
+[ 2016-12-15T21:04:29+08:00 ] ::1 /warehouse/index.php/Home/stock/getQuantityStock
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: DESCRIBE wh_stock [ RunTime:0.041002s ]
+SQL: SELECT `quantity_stock` FROM `wh_stock` WHERE ( stock_id=2 AND id_goods=1 ) LIMIT 1   [ RunTime:0.001000s ]
+
+[ 2016-12-15T21:04:33+08:00 ] ::1 /warehouse/index.php/Home/Goods/getGoodsByTypeId
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: DESCRIBE wh_goods [ RunTime:0.005000s ]
+SQL: SELECT `id`,`name` FROM `wh_goods` WHERE ( `type_id` = 1 )  [ RunTime:0.001000s ]
+
+[ 2016-12-15T21:04:37+08:00 ] ::1 /warehouse/index.php/Home/stock/getQuantityStock
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002001s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: DESCRIBE wh_stock [ RunTime:0.005001s ]
+SQL: SELECT `quantity_stock` FROM `wh_stock` WHERE ( stock_id=2 AND id_goods=1 ) LIMIT 1   [ RunTime:0.000000s ]
+
+[ 2016-12-15T21:04:41+08:00 ] ::1 /warehouse/index.php/Home/Goods/getGoodsByTypeId
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: DESCRIBE wh_goods [ RunTime:0.006000s ]
+SQL: SELECT `id`,`name` FROM `wh_goods` WHERE ( `type_id` = 3 )  [ RunTime:0.002000s ]
+
+[ 2016-12-15T21:04:43+08:00 ] ::1 /warehouse/index.php/Home/stock/getQuantityStock
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: DESCRIBE wh_stock [ RunTime:0.006001s ]
+SQL: SELECT `quantity_stock` FROM `wh_stock` WHERE ( stock_id=1 AND id_goods=2 ) LIMIT 1   [ RunTime:0.001000s ]
+
+[ 2016-12-15T21:05:12+08:00 ] ::1 /warehouse/index.php/Home/Goods/getGoodsByTypeId
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: DESCRIBE wh_goods [ RunTime:0.005001s ]
+SQL: SELECT `id`,`name` FROM `wh_goods` WHERE ( `type_id` = 1 )  [ RunTime:0.001000s ]
+
+[ 2016-12-15T21:05:16+08:00 ] ::1 /warehouse/index.php/Home/stock/getQuantityStock
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.008001s ]
+SQL: DESCRIBE wh_stock [ RunTime:0.006000s ]
+SQL: SELECT `quantity_stock` FROM `wh_stock` WHERE ( stock_id=2 AND id_goods=1 ) LIMIT 1   [ RunTime:0.000000s ]
+
+[ 2016-12-15T21:05:36+08:00 ] ::1 /warehouse/index.php/Home/Goods/getGoodsByTypeId
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006001s ]
+SQL: DESCRIBE wh_goods [ RunTime:0.007000s ]
+SQL: SELECT `id`,`name` FROM `wh_goods` WHERE ( `type_id` = 3 )  [ RunTime:0.000000s ]
+
+[ 2016-12-15T21:05:38+08:00 ] ::1 /warehouse/index.php/Home/stock/getQuantityStock
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: DESCRIBE wh_stock [ RunTime:0.006000s ]
+SQL: SELECT `quantity_stock` FROM `wh_stock` WHERE ( stock_id=1 AND id_goods=2 ) LIMIT 1   [ RunTime:0.001000s ]
+
+[ 2016-12-15T21:05:47+08:00 ] ::1 /warehouse/index.php/Home/stock/getQuantityStock
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006001s ]
+SQL: DESCRIBE wh_stock [ RunTime:0.006000s ]
+SQL: SELECT `quantity_stock` FROM `wh_stock` WHERE ( stock_id=1 AND id_goods=1 ) LIMIT 1   [ RunTime:0.003000s ]
+
+[ 2016-12-15T21:05:49+08:00 ] ::1 /warehouse/index.php/Home/stock/getQuantityStock
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: DESCRIBE wh_stock [ RunTime:0.006000s ]
+SQL: SELECT `quantity_stock` FROM `wh_stock` WHERE ( stock_id=1 AND id_goods=1 ) LIMIT 1   [ RunTime:0.001000s ]
+
+[ 2016-12-15T21:22:59+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005001s ]
+NOTIC: [2048] Declaration of Home\Model\LeavestockModel::_after_insert() should be compatible with Think\Model::_after_insert($data, $options) D:\xampp\htdocs\warehouse\Application\Home\Model\LeavestockModel.class.php 第 225 行.
+SQL: DESCRIBE wh_leavestock [ RunTime:0.005000s ]
+NOTIC: [2] Invalid argument supplied for foreach() D:\xampp\htdocs\warehouse\ThinkPHP\Library\Think\Db.class.php 第 429 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `wh_leavestock` LIMIT 1   [ RunTime:0.001000s ]
+NOTIC: [2] Invalid argument supplied for foreach() D:\xampp\htdocs\warehouse\ThinkPHP\Library\Think\Db.class.php 第 429 行.
+SQL: SELECT a.*,b.id AS id_user,b.username FROM wh_leavestock a INNER JOIN wh_user b ON a.user_id=b.id  ORDER BY a.leavedate desc LIMIT 0,10   [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_type [ RunTime:0.005001s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.004001s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-12-15T21:23:01+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: DESCRIBE wh_type [ RunTime:0.005001s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.009000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-12-15T21:54:00+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006001s ]
+SQL: DESCRIBE wh_type [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.007000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.006001s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-12-15T21:54:03+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+NOTIC: [2048] Declaration of Home\Model\LeavestockModel::_after_insert() should be compatible with Think\Model::_after_insert($data, $options) D:\xampp\htdocs\warehouse\Application\Home\Model\LeavestockModel.class.php 第 226 行.
+SQL: DESCRIBE wh_leavestock [ RunTime:0.005000s ]
+NOTIC: [8] Undefined index: leavedate D:\xampp\htdocs\warehouse\ThinkPHP\Library\Think\Model.class.php 第 1125 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-15T21:54:06+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: DESCRIBE wh_type [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-12-15T21:57:37+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+NOTIC: [2048] Declaration of Home\Model\LeavestockModel::_after_insert() should be compatible with Think\Model::_after_insert($data, $options) D:\xampp\htdocs\warehouse\Application\Home\Model\LeavestockModel.class.php 第 225 行.
+SQL: DESCRIBE wh_leavestock [ RunTime:0.005000s ]
+NOTIC: [8] Undefined index: leavedate D:\xampp\htdocs\warehouse\ThinkPHP\Library\Think\Model.class.php 第 1125 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-15T21:57:40+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005001s ]
+SQL: DESCRIBE wh_type [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.007000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.001001s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-12-15T21:58:17+08:00 ] ::1 /warehouse/index.php/Home/Goods/getGoodsByTypeId
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: DESCRIBE wh_goods [ RunTime:0.005000s ]
+SQL: SELECT `id`,`name` FROM `wh_goods` WHERE ( `type_id` = 1 )  [ RunTime:0.001000s ]
+
+[ 2016-12-15T21:58:19+08:00 ] ::1 /warehouse/index.php/Home/stock/getQuantityStock
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: DESCRIBE wh_stock [ RunTime:0.005001s ]
+SQL: SELECT `quantity_stock` FROM `wh_stock` WHERE ( stock_id=1 AND id_goods=1 ) LIMIT 1   [ RunTime:0.000000s ]
+
+[ 2016-12-15T21:58:22+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005001s ]
+NOTIC: [2048] Declaration of Home\Model\LeavestockModel::_after_insert() should be compatible with Think\Model::_after_insert($data, $options) D:\xampp\htdocs\warehouse\Application\Home\Model\LeavestockModel.class.php 第 225 行.
+SQL: DESCRIBE wh_leavestock [ RunTime:0.005000s ]
+NOTIC: [8] Undefined index: leavedate D:\xampp\htdocs\warehouse\ThinkPHP\Library\Think\Model.class.php 第 1125 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-15T21:58:25+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005001s ]
+SQL: DESCRIBE wh_type [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.004001s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-15T21:58:54+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+NOTIC: [2048] Declaration of Home\Model\LeavestockModel::_after_insert() should be compatible with Think\Model::_after_insert($data, $options) D:\xampp\htdocs\warehouse\Application\Home\Model\LeavestockModel.class.php 第 225 行.
+SQL: DESCRIBE wh_leavestock [ RunTime:0.005001s ]
+NOTIC: [8] Undefined index: leavedate D:\xampp\htdocs\warehouse\ThinkPHP\Library\Think\Model.class.php 第 1125 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-15T21:58:57+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006001s ]
+SQL: DESCRIBE wh_type [ RunTime:0.004000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.005001s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.007000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-12-15T22:05:31+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002001s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+NOTIC: [2048] Declaration of Home\Model\LeavestockModel::_after_insert() should be compatible with Think\Model::_after_insert($data, $options) D:\xampp\htdocs\warehouse\Application\Home\Model\LeavestockModel.class.php 第 225 行.
+SQL: DESCRIBE wh_leavestock [ RunTime:0.005001s ]
+NOTIC: [8] Undefined index: leavedate D:\xampp\htdocs\warehouse\ThinkPHP\Library\Think\Model.class.php 第 1125 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001001s ]
+
+[ 2016-12-15T22:05:34+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: DESCRIBE wh_type [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.007000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-15T22:06:34+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.007000s ]
+SQL: DESCRIBE wh_type [ RunTime:0.005001s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.007001s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-12-15T22:06:37+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005001s ]
+NOTIC: [2048] Declaration of Home\Model\LeavestockModel::_after_insert() should be compatible with Think\Model::_after_insert($data, $options) D:\xampp\htdocs\warehouse\Application\Home\Model\LeavestockModel.class.php 第 225 行.
+SQL: DESCRIBE wh_leavestock [ RunTime:0.005000s ]
+NOTIC: [8] Undefined index: leavedate D:\xampp\htdocs\warehouse\ThinkPHP\Library\Think\Model.class.php 第 1125 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-15T22:06:40+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006001s ]
+SQL: DESCRIBE wh_type [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.005001s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006001s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2016-12-15T22:07:13+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006001s ]
+SQL: DESCRIBE wh_type [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.004000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-12-15T22:07:17+08:00 ] ::1 /warehouse/index.php/Home/Goods/getGoodsByTypeId
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: DESCRIBE wh_goods [ RunTime:0.005000s ]
+SQL: SELECT `id`,`name` FROM `wh_goods` WHERE ( `type_id` = 1 )  [ RunTime:0.001000s ]
+
+[ 2016-12-15T22:07:20+08:00 ] ::1 /warehouse/index.php/Home/stock/getQuantityStock
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: DESCRIBE wh_stock [ RunTime:0.005001s ]
+SQL: SELECT `quantity_stock` FROM `wh_stock` WHERE ( stock_id=1 AND id_goods=1 ) LIMIT 1   [ RunTime:0.001000s ]
+
+[ 2016-12-15T22:07:28+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+NOTIC: [2048] Declaration of Home\Model\LeavestockModel::_after_insert() should be compatible with Think\Model::_after_insert($data, $options) D:\xampp\htdocs\warehouse\Application\Home\Model\LeavestockModel.class.php 第 225 行.
+SQL: DESCRIBE wh_leavestock [ RunTime:0.005001s ]
+NOTIC: [8] Undefined index: leavedate D:\xampp\htdocs\warehouse\ThinkPHP\Library\Think\Model.class.php 第 1125 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-15T22:07:32+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006001s ]
+SQL: DESCRIBE wh_type [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005001s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-15T22:07:42+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+NOTIC: [2048] Declaration of Home\Model\LeavestockModel::_after_insert() should be compatible with Think\Model::_after_insert($data, $options) D:\xampp\htdocs\warehouse\Application\Home\Model\LeavestockModel.class.php 第 225 行.
+SQL: DESCRIBE wh_leavestock [ RunTime:0.005001s ]
+NOTIC: [8] Undefined index: leavedate D:\xampp\htdocs\warehouse\ThinkPHP\Library\Think\Model.class.php 第 1125 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-15T22:07:46+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: DESCRIBE wh_type [ RunTime:0.007001s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.005001s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-12-15T22:07:59+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005000s ]
+SQL: DESCRIBE wh_type [ RunTime:0.006000s ]
+SQL: SELECT * FROM `wh_type`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_category [ RunTime:0.005000s ]
+SQL: SELECT * FROM `wh_category`  [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_stockhouse [ RunTime:0.007000s ]
+SQL: SELECT * FROM `wh_stockhouse`  [ RunTime:0.000000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.006000s ]
+SQL: SELECT `id`,`username` FROM `wh_user`  [ RunTime:0.001001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-12-15T22:08:04+08:00 ] ::1 /warehouse/index.php/Home/Leavestock/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: DESCRIBE wh_user [ RunTime:0.005001s ]
+NOTIC: [2048] Declaration of Home\Model\LeavestockModel::_after_insert() should be compatible with Think\Model::_after_insert($data, $options) D:\xampp\htdocs\warehouse\Application\Home\Model\LeavestockModel.class.php 第 226 行.
+SQL: DESCRIBE wh_leavestock [ RunTime:0.007000s ]
+NOTIC: [8] Undefined index: leavedate D:\xampp\htdocs\warehouse\ThinkPHP\Library\Think\Model.class.php 第 1125 行.
+

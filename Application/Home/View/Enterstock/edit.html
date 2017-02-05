@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>进销存 管理中心 - 编辑 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/styles/general.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/styles/main.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/styles/jquery-ui-1.12.1.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+/*自动提示加载图片*/
+.ui-autocomplete-loading {
+    background: white url("__PUBLIC__/images/loader.gif") right center no-repeat;
+}
+
+/*折叠结果*/
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+/* IE 6 doesn't support max-height
+ * we use height instead, but this forces the menu to always be this tall
+ */
+* html .ui-autocomplete {
+  height: 200px;
+}
+</style>
+ 
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-ui-1.12.1.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/submitWait.js"></script>
+<script>
+function MyAutocomplete(obj,address,cache){
+	obj.autocomplete({
+	      minLength: 1,
+	      source: function( request, response ) {
+	        var term = request.term;
+	        if ( term in cache ){
+	          response(cache[ term ] );
+	          return;
+	        }
+	 
+	        $.getJSON(address+term, function( data, status, xhr ) {
+	        	var result = [];
+	        	if(data){
+	        		$.each(data,function(n,i){
+	        	  		result[n] = data[n].name;
+		      		});
+	          		cache[term] = result;
+	        	}
+	          	response(result);
+	        });//getJSON
+	      }//source
+	    });
+}
+
+
+
+$(function() {
+	
+	  /**************鼠标滑上显示颜色*******************/
+	  $(".mouseon").mouseover(function(){
+		  $(this).addClass("current_tr");
+	  });
+	  
+	  $(".mouseon").mouseout(function(){
+		  $(this).removeClass("current_tr");
+	  });
+	  
+	/***************datetime插件*********************/
+	$( "#datetime" ).datepicker({
+	  yearRange: "1970:2100",
+	  closeText: "完成",
+      changeMonth: true,
+      changeYear: true,
+      showButtonPanel: true,
+      dateFormat: "yy-mm-dd",
+      currentText: '今天',
+	  monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+	  monthNamesShort: ['一','二','三','四','五','六','七','八','九','十','十一','十二'],
+	  monthNamesShort: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+	  dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+	  dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],
+	  dayNamesMin: ['日','一','二','三','四','五','六']
+    });
+	
+	/***************datetime插件结束*********************/
+	
+	
+	/**************商品名称和型号名称的自动提示功能*******************/ 
+	/*商品名称*/
+	var cache_goods = {};
+	MyAutocomplete($(".goods" ),"__MODULE__/Goodsname/getData/term/",cache_goods);
+    
+    /*型号*/
+    var cache_type  = {};
+    MyAutocomplete($(".type" ),"__MODULE__/Typename/getData/term/",cache_type);
+	
+	/**************添加一行单机事件*******************/
+	$(".plus").on("click",function(){
+		//先获取所在的tr
+		var tr = $(this).parent().parent();
+
+		if($(this).val()=="+"){
+			var newtr = tr.clone();
+			
+			//找到按钮删除，重新克隆有附加事件的按钮
+			button = newtr.find(":button");
+			//<td><button/></td>
+			td = button.parent();
+			button.remove();
+			td.append(tr.find('.plus').clone(true).val("-"));
+			//将newtr插入到最后一行
+			//tr.after(newtr);
+			laststr = tr.parent().find("tr:last");
+			laststr.after(newtr);
+			
+			obj_goods    = newtr.find(".goods");
+			obj_type     = obj_goods.parent().next().find('.type');
+			obj_quantity = obj_type.parent().next().find('.quantity');
+			obj_unit     = obj_quantity.parent().next().find('.unit');
+			obj_price    = obj_unit.parent().next().find('.price');
+			
+			//清空复制的数据
+			obj_goods.val('');
+			obj_type.val('');
+			obj_quantity.val('');
+			obj_price.val('');
+			obj_unit.val('');
+			
+			//重新绑定事件
+			/*商品名称*/
+			MyAutocomplete(obj_goods,"__MODULE__/Goodsname/getData/term/",cache_goods);
+		    
+		    /*型号*/
+		    MyAutocomplete(obj_type,"__MODULE__/Typename/getData/term/",cache_type); 
+	
+		}
+		else{
+			tr.remove();
+		}
+		
+		//将序号重新排列
+		$(".order").each(function(i){
+			$(this).text(i+1);
+		});
+ 
+	});
+	
+	/**************提交验证事件*******************/
+	//错误信息不可见
+	$("#error").parent().hide();
+	//提交按钮,所有验证通过方可提交            
+	$('#submit').click(function(){
+		var flag_time  = true;
+		var flag_user  = true;
+		var flag_type  = true;
+		var flag_goods = true;
+		var flag_price = true;
+		var flag_quantity= true;
+		var flag_stock = true;
+		var flag_goods_type = true;
+		
+		//商品名称和型号名称相同的行
+		var list 		= new Array();
+		//类型
+		var order_type  = new Array();
+		//商品名称
+		var order_goods = new Array();
+		//入库数量
+		var order_quantity= new Array();
+		//价格
+		var order_price = new Array();
+		
+		/*************修改一下跑一次循环验证完事*************/
+		
+		//检查入库时间
+		var time = $('#datetime').val();
+		if(time!=null){
+			//验证时间正则格式
+			//年-月-日 时：分
+			//var reg = new RegExp("^[1-2][0-9][0-9][0-9]-([1][0-2]|0?[1-9])-([12][0-9]|3[01]|0?[1-9]) ([01][0-9]|[2][0-3]):[0-5][0-9]$");
+			var reg = new RegExp("^[1-2][0-9][0-9][0-9]-([1][0-2]|0?[1-9])-([12][0-9]|3[01]|0?[1-9])$");
+			
+			if(!reg.test(time))
+				flag_time = false;
+		}
+		else flag_time = false;
+		
+		//检查入库人
+		var user = $('#user').val();
+		if(user==0)
+			flag_user = false;
+		
+		//检查库房
+		var stock =$('#stock').val();
+		if(stock==0)
+			flag_stock = false;
+		
+		//一次循环验证
+		$.each($('.goods'), function(i, n){
+  			var obj_goods     = $(this);
+  			var obj_type      = obj_goods.parent().next().find("input");
+  			
+  			var obj_quantity  = obj_type.parent().next().find("input");
+  			var obj_price     = obj_quantity.parent().next().next().find("input");
+  			
+  			var type  	 = obj_type.val();
+  			var goods 	 = obj_goods.val();
+  			var quantity = obj_quantity.val();
+  			var price 	 = obj_price.val();
+  			
+  			if(type=='')
+  				order_type.push(i+1);
+  			if(goods=='')
+  				order_goods.push(i+1);
+  			
+  			if(quantity!=null){
+				//验证数量正则
+				var reg = /^[0-9]*[1-9][0-9]*$/;
+     			if (!reg.test(quantity))
+     				order_quantity.push(i+1);
+			}
+			else
+				order_quantity.push(i+1);
+  			
+  			if(price!=null){
+				//验证价格正则
+				var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
+     	
+				if (!reg.test(price))
+     				order_price.push(i+1);
+			}
+			else
+				order_price.push(i+1);
+		});
+		
+		if(order_type.length>0)
+			flag_type =false;
+		if(order_goods.length>0)
+			flag_goods =false;
+		if(order_quantity.length>0)
+			flag_quantity =false;
+		if(order_price.length>0)
+			flag_price =false;
+		
+		//不能出现商品名称和型号名称相同的行
+		if(flag_goods && flag_type){
+			//减去表头
+			var len = $('#listDiv table tr').length-1;
+			
+			for(i=0;i<len;i++){
+				for(j=i;j<len;j++){
+					var goods_i = $($('.goods').get(i)).val();
+					var goods_j = $($('.goods').get(j)).val();
+					var type_i  = $($('.type').get(i)).val();
+					var type_j  = $($('.type').get(j)).val();
+					
+					if((i!=j) && (goods_i==goods_j) && (type_i==type_j)){
+						list.push("【"+(i+1)+"和"+(j+1)+"】");
+					}
+				}
+			}
+			
+			if(list.length>0)
+				flag_goods_type = false;
+
+		}
+		
+		//console.log(flag_goods_type);
+		
+		
+		if(flag_time && flag_user && flag_type && flag_goods && flag_price && flag_quantity && flag_stock && flag_goods_type)             
+			$('form').submit();
+		else{
+			str="";
+			if(!flag_time)
+				str +="<li>入库时间为空或格式不正确；</li>";
+			if(!flag_user)
+				str +="<li>入库人未选择；</li>";
+			if(!flag_stock)
+				str +="<li>所入库房未选择；</li>";
+			if(!flag_type)
+				str +="<li>序号"+order_type+"的商品规格未填写；</li>";
+			if(!flag_goods)
+				str +="<li>序号"+order_goods+"的商品名称未填写；</li>";
+			if(!flag_price)
+				str +="<li>序号"+order_price+"的单价未填写或格式不正确；</li>";	
+			if(!flag_quantity)
+				str +="<li>序号"+order_quantity+"的入库数量未填写或格式不正确；</li>";
+			if(!flag_goods_type)
+				str +="<li>序号"+list+"的商品名称和型号名称相同！请确认；</li>";
+
+			$("#error").parent().show();
+			
+			$("#error").html("<ol>"+str+"</ol>");
+			return false;
+		}
+		
+	}); 	
+	
+});
+</script>  
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="__CONTROLLER__/index">列表</a></span>
+    <span class="action-span1"><a href="__APP__">进销存 管理中心</a></span>
+    <span id="search_id" class="action-span1"> - 添加 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="main-div">
+    <form method="post" action="__CONTROLLER__/update">
+    <input type="hidden" name="id" value="<?php echo $data['id']; ?>" />
+        <table cellspacing="1" cellpadding="3" width="100%">
+        	            <tr>
+        	    <td class="label">错误信息：</td>
+                <td id="error" style="color:red;">
+                </td>
+        	            </tr>
+        	            <tr>
+                <td class="label">入库时间：</td>
+                <td>
+                    <input id="datetime" type="text" name="enterdate" maxlength="60" size="40" value="<?php echo $data['enterdate']; ?>" />
+                    <span class="require-field">（格式：年-月-日）*</span>
+                </td>
+            </tr>
+		  
+		  
+		  <?php if(session('rolename')=='系统管理员'){?>
+            <tr>
+                <td class="label">入库人：</td>
+                <td>
+                    <select name="user_id" id="user">
+                		<option class="gray" value="0">请选择入库人</option>
+                		<?php foreach($data_user as $k=>$v):?>
+                			<option <?php if($data['user_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>">
+                				<?php echo $v['username'];?>
+                			</option>
+                		<?php endforeach;?>
+                	</select>
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+            
+                <tr>
+                <td class="label">所入仓库：</td>
+                <td>
+                 	<select name="stock_id" class="stock" id="stock">
+                			<option value="0">请选择所入仓库</option>
+                			<?php foreach($data_stockhouse as $k=>$v):?>
+                			<option <?php if($data['stock_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>">
+                				<?php echo $v['name'];?>
+                			</option>
+                			<?php endforeach;?>	
+                	</select>
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+            <?php }else{?>
+            <tr>
+                <td class="label">入库人：</td>
+                <td>
+                    <select name="user_id" id="user">
+                		<option class="gray" value="0">请选择入库人</option>
+                		<?php foreach($data_user as $k=>$v):?>
+                			<option <?php if($data['user_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>">
+                				<?php echo $v['username'];?>
+                			</option>
+                		<?php endforeach;?>
+                	</select>
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+            
+                <tr>
+                <td class="label">所入仓库：</td>
+                <td>
+                 	<select name="stock_id" class="stock" id="stock">
+                			<option value="0">请选择所入仓库</option>
+                			<?php foreach($data_stockhouse as $k=>$v):?>
+                			<option <?php if($data['stock_id']==$v['id']) echo "selected='selected'";?> value="<?php echo $v['id'];?>">
+                				<?php echo $v['name'];?>
+                			</option>
+                			<?php endforeach;?>	
+                	</select>
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+            <?php }?>
+   
+                 <tr>
+                <td class="label">入库商品：</td>
+                <td>
+                	<div class="list-div" id="listDiv">
+                    <table cellspacing="1" cellpadding="3" width="100%">
+                    	<tr>
+                    		<td colspan="6" align="center">【提示：单位是“个”，则不必填写单位】</td>
+                    	</tr>
+                   		<tr>
+                   			<th>序号</th>
+                   			<th>商品名称</th>
+                   			<th>型号</th>
+                   			<th>入库数量</th>
+                   			<th>单位</th>
+                   			<th>单价【元】</th>
+                   			<th>操作</th>
+                   		</tr>
+         				
+         				<?php foreach($data_enterstockdetails as $k=>$v):?>
+                   		<tr style="text-align:center;" class="mouseon">
+                   		<td class="order"><?php echo $k+1;?></td>
+                   		<td><input type="text"   class="goods"    name="goods_name[]" maxlength="30" size="20" value="<?php echo $v['name_goods'];?>" /></td>
+                   		<td><input type="text"   class="type"     name="type_name[]" maxlength="30" size="20" value="<?php echo $v['name_type'];?>" /></td>
+                   		<td><input type="text"   class="quantity" name="quantity_enter[]"  maxlength="10" size="10" value="<?php echo $v['quantity_enter'];?>" /></td>
+                   		<td><input type="text"   class="unit"     name="unit[]"  maxlength="10" size="10" value="<?php echo $v['unit'];?>" /></td>
+                   		
+                   		<td><input type="text"   class="price"    name="price_enter[]"  maxlength="10" size="10" value="<?php echo $v['price_enter'];?>" /></td>
+                   		<td><input type="button" class="plus"     value="<?php echo $k==0?'+':'-';?>"/></td>
+                   		</tr>
+                   		<?php endforeach;?> 
+                   	</table>
+                   	</div>
+                </td>
+            </tr>
+            
+			<tr>
+                <td colspan="2" align="center"><br />
+                    <input id="submit" type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="footer">弘大电力</div>
+</body>
+</html>

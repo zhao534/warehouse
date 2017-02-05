@@ -1,0 +1,498 @@
+<!-- $Id: brand_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>进销存 管理中心 - 添加 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/Styles/general.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Styles/main.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/styles/jquery-ui.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px;}
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+.ui_tpicker_hour_label,.ui_tpicker_minute_label,.ui_tpicker_second_label,.ui_tpicker_millisec_label,.ui_tpicker_time_label{padding-left:20px}
+
+.box{ 
+text-align: center; 
+position:relative; 
+} 
+
+.autocomplete{ 
+border: 1px solid #9ACCFB; 
+background-color: white; 
+text-align: left; 
+} 
+.autocomplete li{ 
+list-style-type: none; 
+} 
+.clickable { 
+cursor: default; 
+} 
+.highlight { 
+background-color: #9ACCFB; 
+} 
+</style>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-ui.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-ui-slide.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-ui-timepicker-addon.js"></script>
+<script>
+
+//ajax获取后台数据
+function getData(url,data_in){
+	$.ajax({
+		type:'POST',
+	    //url:'__MODULE__/Goods/getGoodsByTypeId',
+	    //data:{type_id:type_id},
+	    url:url,
+	    data:data,
+	    dataType:'json',
+	    timeout:3000,
+	    async:true,
+	    success:function(data){
+	    	str = '';
+
+	    	if(data==null)
+	    		return false;
+	    			    	
+	    	return data;
+	    },
+	    error:function(msg){
+	        alert(msg);
+	        return false;
+	    }
+    });
+}
+
+
+$(function() {
+	
+	  /**************鼠标滑上显示颜色*******************/
+	  $(".mouseon").mouseover(function(){
+		  $(this).addClass("current_tr");
+	  });
+	  
+	  $(".mouseon").mouseout(function(){
+		  $(this).removeClass("current_tr");
+	  });
+	  
+	/***************datetime插件*********************/
+	$('#datetime').datetimepicker();
+	/***************datetime插件结束*********************/
+	
+	
+	/**************商品名称和型号名称的自动提示功能*******************/
+	//取得输入框JQuery对象 
+	var $searchInput = $('.goods');
+	//关闭浏览器提供给输入框的自动完成 
+	$searchInput.attr('autocomplete','off');
+	//创建自动完成的下拉列表，用于显示服务器返回的数据,插入在搜索按钮的后面，等显示的时候再调整位置 
+	var $autocomplete = $('<div class="autocomplete"></div>').hide().insertAfter($searchInput); 
+	//清空下拉列表的内容并且隐藏下拉列表区 
+	var clear = function(){ 
+		$autocomplete.empty().hide(); 
+	}; 
+	
+	//注册事件，当输入框失去焦点的时候清空下拉列表并隐藏 
+	$searchInput.blur(function(){ 
+		setTimeout(clear,500); 
+	}); 
+	//下拉列表中高亮的项目的索引，当显示下拉列表项的时候，移动鼠标或者键盘的上下键就会移动高亮的项目，像百度搜索那样 
+	var selectedItem = null; 
+	//timeout的ID 
+	var timeoutid = null; 
+	//设置下拉项的高亮背景 
+	var setSelectedItem = function(item){ 
+		//更新索引变量 
+		selectedItem = item ; 
+		//按上下键是循环显示的，小于0就置成最大的值，大于最大值就置成0 
+		if(selectedItem < 0)
+			selectedItem = $autocomplete.find('li').length - 1; 
+		else if(selectedItem > $autocomplete.find('li').length-1 )
+			selectedItem = 0; 
+		//首先移除其他列表项的高亮背景，然后再高亮当前索引的背景 
+		$autocomplete.find('li').removeClass('highlight').eq(selectedItem).addClass('highlight'); 
+	}; 
+	
+	var ajax_request = function(){ 
+		//ajax服务端通信 
+		$.ajax({ 
+			'url':'__MODULE__/Goodsname/getData', //服务器的地址 
+			'data':{'search_text':$searchInput.val()}, //参数 
+			'dataType':'json', //返回数据类型 
+			'type':'post', //请求类型 
+			'success':function(data){
+				if(data.length) { 
+					//遍历data，添加到自动完成区 
+					$.each(data, function(index,term){
+						var value = data[index].name;
+						//创建li标签,添加到下拉列表中 
+						$('<li></li>').text(value).appendTo($autocomplete).addClass('clickable').hover(function(){ 
+							//下拉列表每一项的事件，鼠标移进去的操作 
+							$(this).siblings().removeClass('highlight'); 
+							$(this).addClass('highlight'); 
+							selectedItem = index; 
+						},function(){ 
+							//下拉列表每一项的事件，鼠标离开的操作 
+							$(this).removeClass('highlight'); 
+							//当鼠标离开时索引置-1，当作标记 
+							selectedItem = -1; 
+						}).click(function(){ 
+							//鼠标单击下拉列表的这一项的话，就将这一项的值添加到输入框中 
+							$searchInput.val(value); 
+							//清空并隐藏下拉列表 
+							$autocomplete.empty().hide(); 
+						}); 
+	});//事件注册完毕 
+	
+	//设置下拉列表的位置，然后显示下拉列表 
+	var ypos = $searchInput.position().top;
+	var xpos = $searchInput.position().left; 
+	$autocomplete.css('width',$searchInput.css('width')); 
+	$autocomplete.css({'position':'relative','left':xpos + "px",'top':ypos +"px"}); 
+	setSelectedItem(0); 
+	//显示下拉列表 
+	$autocomplete.show(); 
+	} 
+	} 
+	}); 
+	}; 
+	//对输入框进行事件注册 
+	$searchInput.keyup(function(event) { 
+		//字母数字，退格，空格 
+		if(event.keyCode > 40 || event.keyCode == 8 || event.keyCode ==32) { 
+			//首先删除下拉列表中的信息 
+			$autocomplete.empty().hide(); 
+			clearTimeout(timeoutid); 
+			timeoutid = setTimeout(ajax_request,100); 
+		} 
+		else if(event.keyCode == 38){ 
+			//上 
+			//selectedItem = -1 代表鼠标离开 
+			if(selectedItem == -1)
+				setSelectedItem($autocomplete.find('li').length-1);  
+			else { 
+				//索引减1 
+				setSelectedItem(selectedItem - 1); 
+			} 
+		event.preventDefault(); 
+	} 
+	else if(event.keyCode == 40) { 
+		//下 
+		//selectedItem = -1 代表鼠标离开 
+		if(selectedItem == -1)
+		setSelectedItem(0); 
+	else { 
+		//索引加1 
+		setSelectedItem(selectedItem + 1); 
+	} 
+	event.preventDefault(); 
+	} 
+	}) 
+	.keypress(function(event){ 
+	//enter键 
+	if(event.keyCode == 13) { 
+	//列表为空或者鼠标离开导致当前没有索引值 
+	if($autocomplete.find('li').length == 0 || selectedItem == -1) { 
+	return; 
+	} 
+	$searchInput.val($autocomplete.find('li').eq(selectedItem).text()); 
+	$autocomplete.empty().hide(); 
+	event.preventDefault(); 
+	} 
+	}) 
+	.keydown(function(event){ 
+	//esc键 
+	if(event.keyCode == 27 ) { 
+	$autocomplete.empty().hide(); 
+	event.preventDefault(); 
+	} 
+	}); 
+	//注册窗口大小改变的事件，重新调整下拉列表的位置 
+	$(window).resize(function() { 
+	var ypos = $searchInput.position().top; 
+	var xpos = $searchInput.position().left; 
+	$autocomplete.css('width',$searchInput.css('width')); 
+	$autocomplete.css({'position':'relative','left':xpos + "px",'top':ypos +"px"}); 
+	}); 
+
+	
+	
+	
+	/**************添加一行单机事件*******************/
+	$(".plus").on("click",function(){
+		//先获取所在的tr
+		var tr = $(this).parent().parent();
+		if($(this).val()=="+"){
+			//点击+号时，给下一个select商品类型绑定上二级联动事件
+			//V1.5以上版本默认值是：false
+			//1:一个布尔值（true 或者 false）指示事件处理函数是否会被复制。
+			//2:一个布尔值，指示对数据是否应该被复制。
+			var newtr = tr.clone(true);
+			newtr.find(":button").val("-");
+			tr.after(newtr);
+		}
+		else{
+			tr.remove();
+		}
+		
+		//将序号重新排列
+		$(".order").each(function(i){
+			$(this).text(i+1);
+		});
+	});
+	
+	/**************提交验证事件*******************/
+	//错误信息不可见
+	$("#error").parent().hide();
+	//提交按钮,所有验证通过方可提交            
+	$('#submit').click(function(){
+		var flag_time  = true;
+		var flag_user  = true;
+		var flag_type  = true;
+		var flag_goods = true;
+		var flag_price = true;
+		var flag_quantity= true;
+		var flag_stock = true;
+		var flag_goods_type = true;
+		
+		//商品名称和型号名称相同的行
+		var list 		= new Array();
+		//类型
+		var order_type  = new Array();
+		//商品名称
+		var order_goods = new Array();
+		//入库数量
+		var order_quantity= new Array();
+		//价格
+		var order_price = new Array();
+		
+		/*************修改一下跑一次循环验证完事*************/
+		
+		//检查入库时间
+		var time = $('#datetime').val();
+		if(time!=null){
+			//验证时间正则格式
+			var reg = new RegExp("^[1-2][0-9][0-9][0-9]-([1][0-2]|0?[1-9])-([12][0-9]|3[01]|0?[1-9]) ([01][0-9]|[2][0-3]):[0-5][0-9]$");
+			if(!reg.test(time))
+				flag_time = false;
+		}
+		else flag_time = false;
+		
+		//检查入库人
+		var user = $('#user').val();
+		if(user==0)
+			flag_user = false;
+		
+		//检查库房
+		var stock =$('#stock').val();
+		if(user==0)
+			flag_stock = false;
+		
+		//一次循环验证
+		$.each($('.goods'), function(i, n){
+  			var obj_goods     = $(this);
+  			var obj_type      = obj_goods.parent().next().find("input");
+  			
+  			var obj_quantity  = obj_type.parent().next().find("input");
+  			var obj_price     = obj_quantity.parent().next().find("input");
+  			
+  			var type  	 = obj_type.val();
+  			var goods 	 = obj_goods.val();
+  			var quantity = obj_quantity.val();
+  			var price 	 = obj_price.val();
+  			
+  			if(type=='')
+  				order_type.push(i+1);
+  			if(goods=='')
+  				order_goods.push(i+1);
+  			
+  			if(quantity!=null){
+				//验证数量正则
+				var reg = /^[0-9]*[1-9][0-9]*$/;
+     			if (!reg.test(quantity))
+     				order_quantity.push(i+1);
+			}
+			else
+				order_quantity.push(i+1);
+  			
+  			if(price!=null){
+				//验证价格正则
+				var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
+     			if (!reg.test(price))
+     				order_price.push(i+1);
+			}
+			else
+				order_price.push(i+1);
+		});
+		
+		if(order_type.length>0)
+			flag_type =false;
+		if(order_goods.length>0)
+			flag_goods =false;
+		if(order_quantity.length>0)
+			flag_quantity =false;
+		if(order_price.length>0)
+			flag_price =false;
+		
+		//不能出现商品名称和型号名称相同的行
+		if(flag_goods && flag_type){
+			//减去表头
+			var len = $('#listDiv table tr').length-1;
+			
+			for(i=0;i<len;i++){
+				for(j=i;j<len;j++){
+					var goods_i = $('.goods').get(i).value;
+					var goods_j = $('.goods').get(j).value;
+					var type_i = $('.type').get(i).value;
+					var type_j = $('.type').get(j).value;
+					
+					if(i!=j && goods_i==goods_j && type_i==type_j){
+						list.push("【"+(i+1)+"和"+(j+1)+"】");
+					}
+				}
+			}
+			
+			if(list.length>0)
+				flag_goods_type = false;
+
+		}
+		
+		
+		if(flag_time && flag_user && flag_type && flag_goods && flag_price && flag_quantity && flag_stock && flag_goods_stock)             
+			$('form').submit();
+		else{
+			str="";
+			if(!flag_time)
+				str +="<li>入库时间为空或格式不正确；</li>";
+			if(!flag_user)
+				str +="<li>入库人未选择；</li>";
+			if(!flag_stock)
+				str +="<li>所入库房未选择；</li>";
+			if(!flag_type)
+				str +="<li>序号"+order_type+"的商品规格未填写；</li>";
+			if(!flag_goods)
+				str +="<li>序号"+order_goods+"的商品名称未填写；</li>";
+			if(!flag_price)
+				str +="<li>序号"+order_price+"的入库价格未填写或格式不正确；</li>";	
+			if(!flag_quantity)
+				str +="<li>序号"+order_quantity+"的入货数量未填写或格式不正确；</li>";
+			if(!flag_goods_type)
+				str +="<li>序号"+list+"的商品名称和型号名称相同！请确认；</li>";
+
+			$("#error").parent().show();
+			
+			$("#error").html("<ol>"+str+"</ol>");
+			return false;
+		}
+	}); 	
+	
+});
+</script>  
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="__CONTROLLER__/index">列表</a></span>
+    <span class="action-span1"><a href="__APP__">进销存 管理中心</a></span>
+    <span id="search_id" class="action-span1"> - 添加 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="main-div">
+    <form method="post" action="__SELF__">
+        <table cellspacing="1" cellpadding="3" width="100%">
+        	            <tr>
+        	    <td class="label">错误信息：</td>
+                <td id="error" style="color:red;">
+                <!-- 
+<ol>
+  <li>咖啡</li>
+  <li>牛奶</li>
+  <li>茶</li>
+</ol>
+ -->
+                </td>
+        	            </tr>
+        	            <tr>
+                <td class="label">入库时间：</td>
+                <td>
+                    <input id="datetime" type="text" name="enterdate" maxlength="60" size="40" value="" />
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+			            <tr>
+                <td class="label">入库人：</td>
+                <td>
+                    <select name="user_id" id="user">
+                		<option class="gray" value="0">请选择入库人员：</option>
+                		<?php foreach($data_user as $k=>$v):?>
+                			<option value="<?php echo $v['id'];?>">
+                				<?php echo $v['username'];?>
+                			</option>
+                		<?php endforeach;?>
+                	</select>
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+                <tr>
+                <td class="label">所入仓库：</td>
+                <td>
+                 	<select name="stock_id" class="stock">
+                			<option value="0">请选择所入仓库</option>
+                			<?php foreach($data_stockhouse as $k=>$v):?>
+                			<option value="<?php echo $v['id'];?>">
+                				<?php echo $v['name'];?>
+                			</option>
+                			<?php endforeach;?>	
+                	</select>
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+   
+                 <tr>
+                <td class="label">入库商品：</td>
+                <td>
+                	<div class="list-div" id="listDiv">
+                    <table cellspacing="1" cellpadding="3" width="100%">
+                   		<tr>
+                   			<th>序号</th>
+                   			<th>商品名称</th>
+                   			<th>型号</th>
+                   			<th>进货数量</th>
+                   			<th>进货价格</th>
+                   			<th>操作</th>
+                   		</tr>
+         				
+                   		<tr style="text-align:center;" class="mouseon">
+                   		<td class="order">1</td>
+                   		<td><div class="box"><input type="text"   class="goods"    name="goods_name[]" maxlength="30" size="20" value="" /></div></td>
+                   		<td><input type="text"   class="type"     name="type_name[]" maxlength="30" size="20" value="" /></td>
+                   		<td><input type="text"   class="quantity" name="quantity_enter[]"  maxlength="10" size="10" value="" /> 个</td>
+                   		<td><input type="text"   class="price"    name="price_enter[]"  maxlength="10" size="10" value="" /> 元</td>
+                   		<td><input type="button" class="plus"     value="+"/></td>
+                   		</tr>
+                   	</table>
+                   	</div>
+                </td>
+            </tr>
+            
+			            <tr>
+                <td colspan="2" align="center"><br />
+                    <input id="submit" type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="footer">
+共执行 1 个查询，用时 0.018952 秒，Gzip 已禁用，内存占用 2.197 MB<br />
+版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
+</body>
+</html>

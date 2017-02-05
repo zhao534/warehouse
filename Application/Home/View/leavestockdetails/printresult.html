@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>出库单 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/styles/general.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/styles/main.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="__CONTROLLER__/index">返回列表</a></span>
+<span class="action-span"><a href="" id="printer">打印单据</a></span>
+<span class="action-span1"><a href="__APP__">进销存 管理中心</a> </span><span id="search_id" class="action-span1"> - 出库明细单 </span>
+<div style="clear:both"></div>
+</h1>
+
+<!-- start brand list -->
+<div class="list-div" id="listDiv">
+  <table cellpadding="3" cellspacing="1">
+    <tbody>
+		<tr>
+            <th>序号</th>
+            <th>订单号</th>
+            <th>工程名称</th>
+            <th>商品名称</th>
+            <th>型号</th>
+            <th>所在库房</th>
+            <!-- <th>出库人</th> -->
+            <th>出库时间</th>
+            <th>出货数量</th>
+            <th>单位</th>
+            <th>价格</th>
+            <th>小计</th>
+		</tr>
+		<?php $i=0;?>
+		<?php foreach($data as $v):?> 
+		<?php $i++;?>       
+		<tr class="mouseon">	
+      	<td align="center"><?php echo $i;?></td>
+      	<td align="center"><?php echo $v['id_leave'];?></td>
+      	<td align="center"><?php echo $v['name_project']; ?></td>
+        <td align="center"><?php echo $v['name_goods']; ?></td>
+        <td align="center"><?php echo $v['name_type']; ?></td>
+        <td align="center"><?php echo $v['name_stockhouse']; ?></td>
+        <!-- <td align="center"><?php echo $v['username']; ?></td> -->
+        <td align="center"><?php echo $v['leavedate']; ?></td>
+        <td align="center" class="quantity"><?php echo $v['quantity_leave']; ?></td>
+        <td align="center"><?php echo $v['unit']; ?></td>
+        <td align="center" class="price"><?php echo $v['price_enter']; ?></td>
+        <td align="center" class="row_price"><?php echo number_format($v['quantity_leave']*$v['price_enter'],2,'.','');?></td>
+        </tr>
+        <?php endforeach; ?>
+        
+        <tr>
+		<td nowrap="true" colspan="9"></td>
+		<td style="text-align:center;">合计：</td>
+      	<td style="text-align:center;" id="total_price"></td>
+    	</tr>
+        	
+  </tbody></table>
+
+<!-- end brand list -->
+</div>
+
+<div id="footer">
+	版权所有 &copy; 2016 弘大电力 - 
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	  //鼠标滑上显示颜色
+	  $(".mouseon").mouseover(function(){
+		  $(this).addClass("current_tr");
+	  });
+	  
+	  $(".mouseon").mouseout(function(){
+		  $(this).removeClass("current_tr");
+	  });
+	  
+	  //计算进货总价格
+	  var total_price=0;
+	  $("td.row_price").each(function(k,v){
+		  total_price += parseFloat($(this).text());
+	  });
+	  
+	  $("#total_price").text(total_price.toFixed(2)+"元");
+	  
+	  //打印事件定义
+	  $("#printer").click(function(){
+		  //局部打印
+		  //将div#footer和h1这两部分删除
+		  $("#footer").remove();
+		  $("h1").remove();
+		  window.print(); 
+	  });
+});
+</script>

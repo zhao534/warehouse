@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>进销存 管理中心 - 编辑</title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/Styles/general.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Styles/main.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/styles/jquery-ui-1.12.1.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+/*自动提示加载图片*/
+.ui-autocomplete-loading {
+    background: white url("__PUBLIC__/images/loader.gif") right center no-repeat;
+}
+
+/*折叠结果*/
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+/* IE 6 doesn't support max-height
+ * we use height instead, but this forces the menu to always be this tall
+ */
+* html .ui-autocomplete {
+  height: 200px;
+}
+</style>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-ui-1.12.1.js"></script>
+
+<script>
+function MyAutocomplete(obj,address,cache){
+	obj.autocomplete({
+	      minLength: 1,
+	      source: function( request, response ) {
+	        var term = request.term;
+	        if ( term in cache ){
+	          response(cache[ term ] );
+	          return;
+	        }
+	 
+	        $.getJSON(address+term, function( data, status, xhr ) {
+	        	var result = [];
+	        	if(data){
+	        		$.each(data,function(n,i){
+	        	  		result[n] = data[n].name;
+		      		});
+	          		cache[term] = result;
+	        	}
+	          	response(result);
+	        });//getJSON
+	      }//source
+	    });
+}
+
+
+
+$(function() {
+
+	/**************商品名称和型号名称的自动提示功能*******************/ 
+	/*商品名称*/
+	var cache_goods = {};
+	var cache_type  = {};
+	MyAutocomplete($("#goods" ),"__MODULE__/Goodsname/getData/term/",cache_goods);
+    
+    /*型号*/
+    MyAutocomplete($("#type" ),"__MODULE__/Typename/getData/term/",cache_type);
+});
+</script>  
+
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="__CONTROLLER__/index">返回列表</a></span>
+    <span class="action-span1"><a href="__APP__">进销存 管理中心</a></span>
+    <span id="search_id" class="action-span1"> - 编辑 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="main-div">
+    <form method="post" action="__CONTROLLER__/update">
+    <input type="hidden" name="id" value="<?php echo $data['id']; ?>" />
+    <input type="hidden" name="stock_id" value="<?php echo $data['stock_id'];?>"/>
+    <input type="hidden" name="quantity_old" value="<?php echo $data['quantity_enter'];?>" />
+    <input type="hidden" name="id_goodsname_old" value="<?php echo $data['id_goodsname'];?>" />
+    <input type="hidden" name="id_typename_old"  value="<?php echo $data['id_typename'];?>" />
+        <table cellspacing="1" cellpadding="3" width="100%">
+        	            <tr>
+                <td class="label">入库单编号：</td>
+                <td>
+                    <input type="text" name="id_enter" maxlength="60" size="40" readonly="readonly" value="<?php echo $data['id_enter'];?>" />
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+			      
+			         <tr>
+                <td class="label">商品名称：</td>
+                <td>
+                    <input type="text" id="goods" name="id_goodsname" maxlength="60" size="40" value="<?php echo $data['name_goods'];?>" />
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+			      
+			  <tr>
+                <td class="label">型号：</td>
+                <td>
+                   <input type="text" id="type" name="id_typename" maxlength="60" size="40" value="<?php echo $data['name_type'];?>" />
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+                
+			            <tr>
+                <td class="label">进货价：</td>
+                <td>
+                    <input type="text" name="price_enter" maxlength="60" size="40" value="<?php echo $data['price_enter'];?>" />
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+			            <tr>
+                <td class="label">进货数量：</td>
+                <td>
+                    <input type="text" name="quantity_enter" maxlength="60" size="40" value="<?php echo $data['quantity_enter'];?>" />
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="label">单位：</td>
+                <td>
+                    <input type="text" name="unit" maxlength="60" size="40" value="<?php echo $data['unit'];?>" />
+                    <span>单位是“个”，则不必填写此项</span>
+                </td>
+            </tr>
+			<!-- <tr>
+                <td class="label">进货总价：</td>
+                <td>
+                    <input type="text" name="total" maxlength="60" size="40" value="" />
+                    <span class="require-field">*</span>
+                </td>
+            </tr> -->
+			            <tr>
+                <td colspan="2" align="center"><br />
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="footer">
+共执行 1 个查询，用时 0.018952 秒，Gzip 已禁用，内存占用 2.197 MB<br />
+版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
+</body>
+</html>

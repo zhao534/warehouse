@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>进销存 管理中心 - 用户管理 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/styles/general.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/styles/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="__CONTROLLER__/index">用户管理</a></span>
+<span class="action-span1"><a href="__APP__">进销存 管理中心</a> </span><span id="search_id" class="action-span1"> - 编辑用户信息 </span>
+<div style="clear:both"></div>
+</h1>
+
+<div class="main-div">
+<form method="post" action="__CONTROLLER__/update" name="theForm" onsubmit="">
+<table cellspacing="1" cellpadding="3" width="100%">
+  <tbody>
+  <tr>
+    <td class="label">用户名称</td>
+    <td><input type="text" name="username" maxlength="20" value="{$data.username}"><span class="require-field">*</span></td>
+  </tr>
+	
+	<tr>
+    <td class="label">角色</td>
+    <td>
+    
+    <select name="role_id">
+   		<option value="0">请选择角色</option>
+   		<?php foreach($data_role as $k=>$v):?>
+   		<?php
+             if($data['role_id']==$v['id']) $select = 'selected=selected';
+			 else $select = '';
+		?>
+   			<option <?php echo $select;?> value="<?php echo $v['id'];?>">
+   				<?php echo $v['name'];?>
+   			</option>
+   		<?php endforeach;?>	
+    </select>
+    
+    </td>
+  	</tr>
+	
+	<tr>
+    <td class="label">密码</td>
+    <td><input type="password" name="password" maxlength="20"></td>
+  	</tr>
+
+	<tr>
+    <td class="label">确认密码</td>
+    <td><input type="password" name="repassword" maxlength="20"></td>
+  	</tr>
+
+  <tr>
+    <td colspan="2" align="center"><br>
+      <input type="submit" class="button" value=" 确定 ">
+      <input type="reset" class="button" value=" 重置 ">
+      <input type="hidden" name="act" value="update">
+	  <input type="hidden" name="id" value="{$data.id}">
+    </td>
+  </tr>
+</tbody></table>
+</form>
+</div>
+
+
+<div id="footer">
+	版权所有 &copy; 2012-2013 传智播客 - PHP培训 - </div>
+</div>
+
+</body>
+</html>
