@@ -13,6 +13,15 @@ class ProjectexpenseController extends \Home\Controller\IndexController {
    		
     	$this->display();
     }
+    
+    public function printresult(){
+    	 
+    	$model_projectexpense = D('Projectexpense');
+    	 
+    	$this->assign("data",$model_projectexpense->show());
+    
+    	$this->display();
+    }
 	
     //添加
 	public function add(){

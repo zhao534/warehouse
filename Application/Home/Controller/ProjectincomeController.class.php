@@ -12,6 +12,15 @@ class ProjectincomeController extends \Home\Controller\IndexController {
    		
     	$this->display();
     }
+    
+    public function printresult(){
+    	 
+    	$model_projectincome = D('Projectincome');
+    	 
+    	$this->assign("data",$model_projectincome->show());
+    
+    	$this->display();
+    }
 	
     //添加
 	public function add(){

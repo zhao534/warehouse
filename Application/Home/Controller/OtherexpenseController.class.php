@@ -12,6 +12,17 @@ class OtherexpenseController extends \Home\Controller\IndexController {
    		
     	$this->display();
     }
+    
+    public function printresult(){
+    	
+    	$model_otherexpense = D('Otherexpense');
+    	
+    	$this->assign("data",$model_otherexpense->show());
+    
+    	$this->display();
+    }
+    
+    
 	
     //添加
 	public function add(){

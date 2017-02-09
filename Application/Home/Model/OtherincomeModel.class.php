@@ -135,6 +135,49 @@ class OtherincomeModel extends Model
 	*/
 	}
 	
+	//不分页显示
+	public function show(){
+		//查询条件
+		$map = 1;
+	
+		//摘要
+		if($summary = I('get.summary')){
+			$map .= " AND summary LIKE '%{$summary}%'";
+		}
+	
+		//时间段
+		if($end = I('get.end')){
+			$start = I('get.start');
+	
+			if(empty($start))
+				$map .= " AND UNIX_TIMESTAMP('{$end}')>=UNIX_TIMESTAMP(get_time)";
+			else
+				$map .= " AND UNIX_TIMESTAMP('{$start}')<=UNIX_TIMESTAMP(get_time) AND UNIX_TIMESTAMP('{$end}')>=UNIX_TIMESTAMP(get_time)";
+		}
+	
+		//支出金额
+		$min = intval(I('get.min'));
+		$max = intval(I('get.max'));
+	
+		if($min>0){
+			if($max==0)
+				$map .= " AND get_money>={$min}";
+			else if($min<$max)
+				$map .= " AND get_money>={$min} AND get_money<={$max}";
+		}
+		else if($max>0)
+			$map .= " AND get_money<={$max}";
+	
+		//数据查询
+		$data = $this
+		->where($map)
+		->select();
+	
+				 		var_dump($this->getLastSql());
+	
+		return $data;
+	}
+	
 
 	//分页显示
 	public function show_page($perpage){

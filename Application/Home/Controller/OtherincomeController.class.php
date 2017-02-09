@@ -12,6 +12,15 @@ class OtherincomeController extends \Home\Controller\IndexController {
    		
     	$this->display();
     }
+    
+    public function printresult(){
+    	 
+    	$model_otherincome = D('Otherincome');
+    	 
+    	$this->assign("data",$model_otherincome->show());
+    
+    	$this->display();
+    }
 	
     //添加
 	public function add(){

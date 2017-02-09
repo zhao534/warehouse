@@ -41,7 +41,8 @@
       <input type="text" name="min" size="8" value="<?php echo I('get.min'); ?>" />
   	  <label>区间</label><input type="text" name="max" size="8" value="<?php echo I('get.max'); ?>" />
        
-    <input type="submit" value=" 搜索 " class="button" />
+    <input type="submit" value=" 搜索 " class="button" onclick="check(this)" />
+    <input type="submit" value="打印搜索结果" class="button" onclick="check(this)"/>
   </form>
 </div>
 
@@ -207,4 +208,16 @@ $("#selall").click(function(){
 		}
 	}
 });
+
+function check(obj){
+	$("form").submit(function(){
+		if(obj.value=="打印搜索结果"){
+			this.action="__CONTROLLER__/printresult";
+			this.submit();
+		}
+		else{
+			this.submit();
+		} 
+	});
+}
 </script>

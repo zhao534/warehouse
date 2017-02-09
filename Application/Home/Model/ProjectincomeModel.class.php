@@ -154,6 +154,53 @@ class ProjectincomeModel extends Model
 	}
 	
 	
+	//不分页显示
+	public function show(){
+		//查询条件
+		$map = 1;
+	
+		//工程名称
+		if($name = I('get.name')){
+			$map .= " AND b.name LIKE '%{$name}%'";
+		}
+	
+		//时间段
+		if($end = I('get.end')){
+			$start = I('get.start');
+	
+			if(empty($start))
+				$map .= " AND UNIX_TIMESTAMP('{$end}')>=UNIX_TIMESTAMP(a.get_time)";
+			else
+				$map .= " AND UNIX_TIMESTAMP('{$start}')<=UNIX_TIMESTAMP(a.get_time) AND UNIX_TIMESTAMP('{$end}')>=UNIX_TIMESTAMP(a.get_time)";
+		}
+	
+		//入账金额
+		$min = intval(I('get.min'));
+		$max = intval(I('get.max'));
+	
+		if($min>0){
+			if($max==0)
+				$map .= " AND a.get_money>={$min}";
+			else if($min<$max)
+				$map .= " AND a.get_money>={$min} AND a.get_money<={$max}";
+		}
+		else if($max>0)
+			$map .= " AND a.get_money<={$max}";
+	
+		//数据查询
+		$data = $this
+		->alias('a')
+		->field('a.*,b.name AS name_project')
+		->join('wh_project b ON b.id=a.project_id')
+		->where($map)
+		->select();
+	
+		// 		var_dump($this->getLastSql());
+	
+		return $data;
+	}
+	
+	
 	
 	//分页显示
 	public function show_page($perpage){
