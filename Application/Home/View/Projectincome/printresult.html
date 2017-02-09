@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>工程收入 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/styles/general.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/styles/main.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="__CONTROLLER__/index">返回列表</a></span>
+<span class="action-span"><a href="" id="printer">打印单据</a></span>
+<span class="action-span1"><a href="__APP__">进销存 管理中心</a> </span><span id="search_id" class="action-span1"> - 工程收入明细单 </span>
+<div style="clear:both"></div>
+</h1>
+
+<!-- start brand list -->
+<div class="list-div" id="listDiv">
+  <table cellpadding="3" cellspacing="1">
+    <tbody>
+		<tr>
+            <th>序号</th>
+            <th>工程名称</th>
+            <th>摘要</th>
+            <th>金额</th>
+            <th>时间</th>
+		</tr>
+		<?php $i=0;?>
+		<?php foreach($data as $v):?> 
+		<?php $i++;?>       
+		<tr class="mouseon">	
+      	<td align="center"><?php echo $i;?></td>
+      	<td align="center"><?php echo $v['name_project'];?></td>
+      	<td align="center"><?php echo $v['summary'];?></td>
+      	<td align="center" class="price"><?php echo $v['get_money'];?></td>
+      	<td align="center"><?php echo $v['get_time'];?></td>
+        </tr>
+        <?php endforeach; ?>
+        
+        <tr>
+        <td nowrap="true" colspan="5" style="text-align:right;padding-right:20px;"  id="total_price"></td>
+    	</tr>
+        	
+  </tbody></table>
+
+<!-- end brand list -->
+</div>
+
+<div id="footer">
+	版权所有 &copy; 2016 弘大电力 - 
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	  //鼠标滑上显示颜色
+	  $(".mouseon").mouseover(function(){
+		  $(this).addClass("current_tr");
+	  });
+	  
+	  $(".mouseon").mouseout(function(){
+		  $(this).removeClass("current_tr");
+	  });
+	  
+	  //计算总价格
+	  var total_price=0;
+	  $("td.price").each(function(k,v){
+		  total_price += parseFloat($(this).text());
+	  });
+	  
+	  $("#total_price").text("合计："+total_price.toFixed(2)+"元");
+	  
+	  //打印事件定义
+	  $("#printer").click(function(){
+		  //局部打印
+		  //将div#footer和h1这两部分删除
+		  $("#footer").remove();
+		  $("h1").remove();
+		  window.print(); 
+	  });
+});
+</script>
